@@ -24,7 +24,7 @@ bool suf(char *input,char *str) {
 		return false;
 	}
 	char *str_ptr = text;
-	size_t len = strlen(text);
+	int len = strlen(text);
 	for (int i = 0;i<len-1;i++)
 	{
 		if (text[i+1]=='\n')
@@ -62,7 +62,7 @@ bool pref(char *input,char *str) {
                 return false;
         }
         char *str_ptr = text;
-        size_t len = strlen(text);
+        int len = strlen(text);
         for (int i = 0;i<len-1;i++)
         {
                 if (text[i+1]=='\n')
@@ -100,7 +100,6 @@ bool del(char *input,char *str) {
                 return false;
         }
         char *str_ptr = text;
-        size_t len = strlen(text);
 	regex_t regex;
         if (regcomp(&regex,str,REG_EXTENDED))
 	{
@@ -129,13 +128,14 @@ bool del(char *input,char *str) {
 
 int correct_replace(char *str) {
 	int cnt = 0;
-	for (int i = 0;i<strlen(str);i++)
+	int len = strlen(str);
+	for (int i = 0;i<len;i++)
 	{
 		if (str[i]=='/')
 		{
 			cnt++;
 		}
-		if (i==strlen(str)-1 && str[i]!='/')
+		if (i==len-1 && str[i]!='/')
 		{
 			cnt=0;
 		}
@@ -150,7 +150,8 @@ int correct_replace(char *str) {
 bool repl(char *input,char *str) {
 	char *new = strstr(str,"/")+1;
 	new[strlen(new)-1]=0;
-	for (int i = 0;i<strlen(str);i++)
+	int len = strlen(str);
+	for (int i = 0;i<len;i++)
 	{
 		if (str[i]=='/')
 		{
@@ -176,7 +177,6 @@ bool repl(char *input,char *str) {
                 return false;
         }
         char *str_ptr = text;
-        size_t len = strlen(text);
         regex_t regex;
         if (regcomp(&regex,str,REG_EXTENDED))
         {
