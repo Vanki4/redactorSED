@@ -111,7 +111,7 @@ bool del(char *input,char *str) {
 	{
 		bool per = false;
 		str_ptr[matches[0].rm_so]=0;
-		if (*(str_ptr-1)=='\n' || *str_ptr == text[0])
+		if (*str_ptr == text[0] || *(str_ptr-1)=='\n')
 		{
 			per = true;
 		}
@@ -123,6 +123,7 @@ bool del(char *input,char *str) {
 		}
 	}
 	fputs(str_ptr,input_file);
+	regfree(&regex);
         return true;
 }
 
@@ -192,5 +193,6 @@ bool repl(char *input,char *str) {
                 str_ptr=str_ptr+matches[0].rm_eo;
         }
         fputs(str_ptr,input_file);
+	regfree(&regex);
         return true;
 }
