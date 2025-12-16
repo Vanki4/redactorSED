@@ -39,6 +39,7 @@ bool suf(char *input,char *str) {
 			}
 		}
 	}
+	fclose(input_file);
 	return true;
 }
 
@@ -77,6 +78,7 @@ bool pref(char *input,char *str) {
                         }
                 }
         }
+	fclose(input_file);
         return true;
 }
 
@@ -124,6 +126,7 @@ bool del(char *input,char *str) {
 	}
 	fputs(str_ptr,input_file);
 	regfree(&regex);
+	fclose(input_file);
         return true;
 }
 
@@ -194,5 +197,6 @@ bool repl(char *input,char *str) {
         }
         fputs(str_ptr,input_file);
 	regfree(&regex);
+	fclose(input_file);
         return true;
 }
